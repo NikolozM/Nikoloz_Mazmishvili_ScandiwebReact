@@ -10,6 +10,7 @@ body {
   font-family: "Raleway", sans-serif;
   align-items: center;
   font-size: 18px;
+  color: #1d1f22;
 }
 
 .text-decoration {
@@ -213,6 +214,7 @@ body {
 /* cart styles */
 
 .cart--image {
+  position:relative;
   width: 200px;
   border-radius: 9px;
   height: 100%;
@@ -233,4 +235,10 @@ body {
 .scrollBar {
   max-height: 450px;
   overflow: auto;
+}
+
+.hover:hover{
+  background-color:#0000008a;
+  color:rgb(255, 255, 255);
+  transition: 0.5s;
 }

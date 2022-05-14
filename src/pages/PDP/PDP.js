@@ -20,6 +20,7 @@ class PDP extends Component {
               product(id: "${this.state.id}"){
                 id,
                 name,
+                inStock,
                 gallery,
                 description,
                 attributes{
@@ -57,8 +58,7 @@ class PDP extends Component {
   }
 
   render() {
-    console.log(this.state.product);
-    const { currencyIndex, cartItem, addItemCart } = this.props;
+    const { currencyIndex, cartItem, addItemCart,checkSameItem,chooseSameItem } = this.props;
     const { mainImage, cartAttributes, product, gallery } = this.state;
 
     // small images to render , push with onClick method to change mainImage state
@@ -100,6 +100,7 @@ class PDP extends Component {
       price,
       cartAttributes,
       count,
+      gallery
     };
 
     return (
@@ -210,7 +211,7 @@ class PDP extends Component {
 
             <div style={{ marginBottom: "40px" }}>
               <button
-                onClick={() => addItemCart(product, obj, cartAttributes)}
+                onClick={() => checkSameItem(obj) ? chooseSameItem(obj)  : addItemCart(product, obj, cartAttributes) }
                 className="add-to-cart-btn">
                 ADD TO CART
               </button>

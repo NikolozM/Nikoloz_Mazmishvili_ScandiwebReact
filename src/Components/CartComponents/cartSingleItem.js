@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import RenderAttr from "../RenderAttr";
+import VectorRight from "../../assets/VectorRight.png";
+import VectorLeft from "../../assets/VectorLeft.png";
 class CartSingleItem extends Component {
+  state = {
+    imageIndex: 0,
+  };
   render() {
     const {
       item,
@@ -9,7 +14,7 @@ class CartSingleItem extends Component {
       increaseQuantity,
       deleteItem,
     } = this.props;
-
+    const { imageIndex } = this.state;
     return (
       <div
         style={{
@@ -171,7 +176,34 @@ class CartSingleItem extends Component {
         </div>
 
         <div>
-          <img className="cart--image" src={item.cartImg}></img>
+          {/* <img className="cart--image" src={item.cartImg}></img> */}
+          <img className="cart--image" src={item.gallery[imageIndex]}></img>
+
+          <div 
+          onClick={()=> imageIndex > 0 ? this.setState({
+            imageIndex: imageIndex - 1
+          }) : null }
+            style={{
+              position: "absolute",
+              top: "80%",
+              right: "6%",
+              backgroundColor: "rgba(0, 0, 0, 0.73)",
+            }}>
+            <img style={{ padding: "10px" }} src={VectorLeft} />
+          </div>
+
+          <div 
+          onClick={()=> imageIndex < item.gallery.length - 1 ? this.setState({
+            imageIndex: imageIndex + 1
+          }) : null }
+            style={{
+              position: "absolute",
+              top: "80%",
+              right: "2%",
+              backgroundColor: "rgba(0, 0, 0, 0.73)",
+            }}>
+            <img style={{ padding: "10px" }} src={VectorRight} />
+          </div>
         </div>
       </div>
     );

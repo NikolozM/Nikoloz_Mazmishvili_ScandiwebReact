@@ -6,17 +6,18 @@ class Product extends Component {
     const { product, currencyIndex } = this.props;
     return (
       <div className="card">
+        <Link style={{ textDecoration: 'none' }} to={`/PDP/${product.id}`}>
         {product.inStock ? (
-          <Link to={`/PDP/${product.id}`}>
             <img className="card--image" src={product.gallery[0]}></img>
-          </Link>
         ) : (
           <img className="outStock--card--image" src={product.gallery[0]}></img>
-        )}
+        )}  
 
         {product.inStock ? null : (
           <h1 className="outStock--card--txt"> OUT OF STOCK </h1>
         )}
+
+        <h3 className={product.inStock ? "fontSize" : "outStock--card--id--price"}>{product.brand}</h3>
 
         <h3
           className={
@@ -32,7 +33,9 @@ class Product extends Component {
           {product.prices[currencyIndex].currency.symbol}{" "}
           {product.prices[currencyIndex].amount}
         </span>
+        </Link>
       </div>
+      
     );
   }
 }

@@ -2,9 +2,9 @@ import React, { Component } from "react";
 
 class Currencies extends Component {
   render() {
-    const { changeCurrency, label, symbol } = this.props;
+    const { changeCurrency, label, symbol,changeArrow } = this.props;
     return (
-      <div onClick={() => changeCurrency(label)}>
+      <div className="hover" onClick={() => {changeCurrency(label);changeArrow()}}>
         <span style={{ paddingRight: "5px" }}>{symbol}</span>
         {label}
       </div>

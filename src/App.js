@@ -6,6 +6,7 @@ import Cart from "./pages/Cart/Cart";
 import Navbar from "./pages/Navbar";
 import { Routes, Route } from "react-router-dom";
 import { client } from "./index";
+import _ from "lodash";
 
 import {
   faYenSign,
@@ -45,6 +46,7 @@ class App extends Component {
                     }
                     amount
                   }
+                  brand
                 }
               },
               categories{
@@ -71,13 +73,13 @@ class App extends Component {
       renderCategoryName: name.toUpperCase(),
     });
   };
-// increase item quantity by 1 onClick
+  // increase item quantity by 1 onClick
   increaseQuantity = () => {
     this.setState({
       quantity: this.state.quantity + 1,
     });
   };
-// decrease item quantity by 1 onClick
+  // decrease item quantity by 1 onClick
   decreaseQuantity = () => {
     this.setState({
       quantity: this.state.quantity - 1,
@@ -114,17 +116,45 @@ class App extends Component {
     }
   };
 
+  // check if adding same item with same attributes
+
+  checkSameItem = (obj) => {
+    // const cartContent = [...this.state.cartItem];
+    // let index = cartContent.findIndex(item => (item.cartAttributes.every((spec, i) => spec.displayValue === cartAttributes[i].displayValue)))
+    // console.log(index);
+    for (let i = 0; i < this.state.cartItem.length; i++) {
+    if (obj.name.toString() === this.state.cartItem[i].name.toString() && 
+    _.isEqual(obj.cartAttributes,this.state.cartItem[i].cartAttributes)){
+      return true
+    };
+  }
+}
+// if adding same item with same attributes, only quantity and item count increasing
+  chooseSameItem = (obj) => {
+    for (let i = 0; i < this.state.cartItem.length; i++) {
+        if (obj.name.toString() === this.state.cartItem[i].name.toString() && 
+        _.isEqual(obj.cartAttributes,this.state.cartItem[i].cartAttributes)){
+            this.state.cartItem[i].count = this.state.cartItem[i].count + 1 ;
+            this.setState({
+              quantity: this.state.quantity + 1
+            })
+          }
+      }
+  }
+
   // if product does not have attributes item adding without att choosing, but if it has , choosing att is mandatory.
   addItemCart = (product, obj, cartAttributes) => {
-    if (product?.attributes == false) {
+    if (product?.attributes == false && product?.inStock) {
       this.setState({
         cartItem: [...this.state.cartItem, obj],
         quantity: this.state.quantity + 1,
       });
     } else if (
       product?.attributes?.length > 0 &&
-      product?.attributes?.length === cartAttributes.length
+      product?.attributes?.length === cartAttributes.length &&
+      product?.inStock
     ) {
+      console.log(obj.name);
       this.setState({
         cartItem: [...this.state.cartItem, obj],
         quantity: this.state.quantity + 1,
@@ -136,7 +166,7 @@ class App extends Component {
       });
     }
   };
-// delete item from cart if item count = 0 
+  // delete item from cart if item count = 0
   deleteItem = (item) => {
     const copyCartItem = [...this.state.cartItem];
     if (item.count === 0) {
@@ -177,6 +207,8 @@ class App extends Component {
       increaseQuantity,
       decreaseQuantity,
       deleteItem,
+      checkSameItem,
+      chooseSameItem,
     } = this;
     return (
       <div>
@@ -210,6 +242,8 @@ class App extends Component {
                 currencyIndex={currencyIndex}
                 cartItem={cartItem}
                 addItemCart={addItemCart}
+                checkSameItem={checkSameItem}
+                chooseSameItem={chooseSameItem}
               />
             }
           />

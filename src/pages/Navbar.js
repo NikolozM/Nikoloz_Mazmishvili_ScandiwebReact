@@ -43,6 +43,7 @@ class Navbar extends Component {
               symbol={prev.symbol}
               label={prev.label}
               changeCurrency={this.props.changeCurrency}
+              changeArrow={this.changeArrow}
             />
           )),
         });
@@ -63,7 +64,44 @@ class Navbar extends Component {
 
   componentDidMount() {
     this.getCategories();
+    document.addEventListener("mousedown", this.closeCurrencyOverlay);
+    document.addEventListener("mousedown", this.closeCartOverlay);
   }
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.closeCurrencyOverlay);
+    document.removeEventListener("mousedown", this.closeCartOverlay);
+  }
+
+  wrapperRef = React.createRef();
+  myRef = React.createRef();
+  cartLayoutRef = React.createRef();
+  currencyRef = React.createRef();
+
+  closeCurrencyOverlay = (event) => {
+    if (
+      !this.wrapperRef.current.contains(event.target) &&
+      !this.myRef.current.contains(event.target) &&
+      !this.currencyRef.current.contains(event.target) &&
+      !this.cartLayoutRef.current.contains(event.target)
+    ) {
+      this.setState({
+        arrow: faCaretDown,
+      });
+    }
+  };
+
+  closeCartOverlay = (event) => {
+    if (
+      !this.wrapperRef.current.contains(event.target) &&
+      !this.myRef.current.contains(event.target) &&
+      !this.currencyRef.current.contains(event.target) &&
+      !this.cartLayoutRef.current.contains(event.target)
+    ) {
+      this.setState({
+        showCart: false,
+      });
+    }
+  };
 
   render() {
     const {
@@ -77,7 +115,7 @@ class Navbar extends Component {
       deleteItem,
     } = this.props;
     const { categories, arrow, currencies, showCart } = this.state;
-    const { changeArrow } = this;
+    const { changeArrow, wrapperRef, myRef, currencyRef, cartLayoutRef } = this;
     return (
       <div style={{ position: "relative" }}>
         <div className="flex spaceBetween navBarHeight">
@@ -103,12 +141,20 @@ class Navbar extends Component {
                 style={{ alignItems: "center" }}
                 icon={currencySign}
               />
-              <FontAwesomeIcon
-                style={{ padding: "5px", alignItems: "end", cursor: "pointer" }}
-                onClick={changeArrow}
-                icon={arrow}
-              />
               <div
+                ref={wrapperRef}
+                onClick={showCart === false ? changeArrow : null}>
+                <FontAwesomeIcon
+                  style={{
+                    padding: "5px",
+                    alignItems: "end",
+                    cursor: "pointer",
+                  }}
+                  icon={arrow}
+                />
+              </div>
+              <div
+                ref={currencyRef}
                 className="Currencies"
                 style={{
                   display: arrow === faCaretDown ? "none" : "flex",
@@ -119,16 +165,22 @@ class Navbar extends Component {
             </div>
 
             <div style={{ paddingLeft: "22px" }}>
-              <FontAwesomeIcon
-                onClick={() =>
-                  this.setState ({
-                    showCart: !this.state.showCart,
-                  })
-                }
-                icon={faShoppingCart}
-                style={{ alignItems: "start", cursor: "pointer" }}
-              />
+              <div ref={myRef}>
+                <FontAwesomeIcon
+                  onClick={
+                    arrow === faCaretDown
+                      ? () =>
+                          this.setState({
+                            showCart: !this.state.showCart,
+                          })
+                      : null
+                  }
+                  icon={faShoppingCart}
+                  style={{ alignItems: "start", cursor: "pointer" }}
+                />
+              </div>
               <div
+                ref={cartLayoutRef}
                 style={{
                   display: showCart ? "flex" : "none",
                   position: "absolute",
