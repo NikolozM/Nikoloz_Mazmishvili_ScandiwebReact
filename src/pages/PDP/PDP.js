@@ -58,7 +58,13 @@ class PDP extends Component {
   }
 
   render() {
-    const { currencyIndex, cartItem, addItemCart,checkSameItem,chooseSameItem } = this.props;
+    const {
+      currencyIndex,
+      cartItem,
+      addItemCart,
+      checkSameItem,
+      chooseSameItem,
+    } = this.props;
     const { mainImage, cartAttributes, product, gallery } = this.state;
 
     // small images to render , push with onClick method to change mainImage state
@@ -100,7 +106,7 @@ class PDP extends Component {
       price,
       cartAttributes,
       count,
-      gallery
+      gallery,
     };
 
     return (
@@ -154,7 +160,7 @@ class PDP extends Component {
                               };
                               const sameItemIndex =
                                 modifyAttributes.indexOf(sameItem);
-                                
+
                               sameItem
                                 ? modifyAttributes.splice(
                                     sameItemIndex,
@@ -211,7 +217,11 @@ class PDP extends Component {
 
             <div style={{ marginBottom: "40px" }}>
               <button
-                onClick={() => checkSameItem(obj) ? chooseSameItem(obj)  : addItemCart(product, obj, cartAttributes) }
+                onClick={() =>
+                  checkSameItem(obj)
+                    ? chooseSameItem(obj)
+                    : addItemCart(product, obj, cartAttributes)
+                }
                 className="add-to-cart-btn">
                 ADD TO CART
               </button>

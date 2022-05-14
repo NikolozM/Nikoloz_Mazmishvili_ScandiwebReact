@@ -25,6 +25,9 @@ class App extends Component {
     currencySign: faDollarSign,
     quantity: 0,
     cartItem: [],
+    // document height for apply background when cart layout is open
+    height: document.documentElement.scrollHeight,
+    showCart: false,
   };
 
   getProducts() {
@@ -39,6 +42,15 @@ class App extends Component {
                   inStock
                   category
                   gallery
+                  attributes{
+                    id
+                    name
+                    type
+                    items{
+                      displayValue
+                      id
+                    }
+                  }
                   prices{
                     currency{
                       label
@@ -123,27 +135,45 @@ class App extends Component {
     // let index = cartContent.findIndex(item => (item.cartAttributes.every((spec, i) => spec.displayValue === cartAttributes[i].displayValue)))
     // console.log(index);
     for (let i = 0; i < this.state.cartItem.length; i++) {
-    if (obj.name.toString() === this.state.cartItem[i].name.toString() && 
-    _.isEqual(obj.cartAttributes,this.state.cartItem[i].cartAttributes)){
-      return true
-    };
-  }
-}
-// if adding same item with same attributes, only quantity and item count increasing
+      if (
+        _.isEqual(obj.name, this.state.cartItem[i].name) &&
+        _.isEqual(obj.cartAttributes, this.state.cartItem[i].cartAttributes)
+      ) {
+        return true;
+      }
+    }
+  };
+  // if adding same item with same attributes, only quantity and item count increasing
   chooseSameItem = (obj) => {
     for (let i = 0; i < this.state.cartItem.length; i++) {
-        if (obj.name.toString() === this.state.cartItem[i].name.toString() && 
-        _.isEqual(obj.cartAttributes,this.state.cartItem[i].cartAttributes)){
-            this.state.cartItem[i].count = this.state.cartItem[i].count + 1 ;
-            this.setState({
-              quantity: this.state.quantity + 1
-            })
-          }
+      if (
+        _.isEqual(obj.name, this.state.cartItem[i].name) &&
+        _.isEqual(obj.cartAttributes, this.state.cartItem[i].cartAttributes)
+      ) {
+        this.state.cartItem[i].count = this.state.cartItem[i].count + 1;
+        this.setState({
+          quantity: this.state.quantity + 1,
+        });
       }
-  }
+    }
+  };
+
+  // always closes cartlayout when click is outside of element
+  closeCartLayout = () => {
+    this.setState({
+      showCart: false,
+    });
+  };
+  // onclick opens or closes cartlayout
+  openOrCloseCartLayout = () => {
+    this.setState({
+      showCart: !this.state.showCart,
+    });
+  };
 
   // if product does not have attributes item adding without att choosing, but if it has , choosing att is mandatory.
   addItemCart = (product, obj, cartAttributes) => {
+    console.log(cartAttributes);
     if (product?.attributes == false && product?.inStock) {
       this.setState({
         cartItem: [...this.state.cartItem, obj],
@@ -154,7 +184,6 @@ class App extends Component {
       product?.attributes?.length === cartAttributes.length &&
       product?.inStock
     ) {
-      console.log(obj.name);
       this.setState({
         cartItem: [...this.state.cartItem, obj],
         quantity: this.state.quantity + 1,
@@ -166,6 +195,7 @@ class App extends Component {
       });
     }
   };
+
   // delete item from cart if item count = 0
   deleteItem = (item) => {
     const copyCartItem = [...this.state.cartItem];
@@ -181,6 +211,14 @@ class App extends Component {
     }
   };
 
+  // this fuction gets page height when you click cart button or change category.
+  // with this height,  we are applying background when cart layout is open
+  getHeight = () => {
+    this.setState({
+      height: document.documentElement.scrollHeight,
+    });
+  };
+
   componentDidMount() {
     this.getProducts();
   }
@@ -188,6 +226,7 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.category !== this.state.category) {
       this.getProducts();
+      this.getHeight();
     }
   }
 
@@ -199,6 +238,8 @@ class App extends Component {
       currencySign,
       quantity,
       cartItem,
+      height,
+      showCart,
     } = this.state;
     const {
       chooseCategory,
@@ -209,9 +250,18 @@ class App extends Component {
       deleteItem,
       checkSameItem,
       chooseSameItem,
+      getHeight,
+      closeCartLayout,
+      openOrCloseCartLayout,
     } = this;
     return (
       <div>
+        <div
+          id="overlayBackground"
+          style={{
+            height: `${height}px`,
+            display: showCart === true ? "block" : "none",
+          }}></div>
         <Navbar
           chooseCategory={chooseCategory}
           changeCurrency={changeCurrency}
@@ -222,6 +272,10 @@ class App extends Component {
           quantity={quantity}
           currencyIndex={currencyIndex}
           deleteItem={deleteItem}
+          getHeight={getHeight}
+          showCart={showCart}
+          closeCartLayout={closeCartLayout}
+          openOrCloseCartLayout={openOrCloseCartLayout}
         />
         <Routes>
           <Route
@@ -231,6 +285,10 @@ class App extends Component {
                 products={products}
                 currencyIndex={currencyIndex}
                 renderCategoryName={renderCategoryName}
+                addItemCart={addItemCart}
+                cartItem={cartItem}
+                checkSameItem={checkSameItem}
+                chooseSameItem={chooseSameItem}
               />
             }
           />

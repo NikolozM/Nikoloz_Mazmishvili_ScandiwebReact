@@ -17,7 +17,6 @@ class Navbar extends Component {
     categories: [],
     arrow: faCaretDown,
     currencies: [],
-    showCart: false,
   };
 
   getCategories() {
@@ -91,15 +90,14 @@ class Navbar extends Component {
   };
 
   closeCartOverlay = (event) => {
+    const { closeCartLayout } = this.props;
     if (
       !this.wrapperRef.current.contains(event.target) &&
       !this.myRef.current.contains(event.target) &&
       !this.currencyRef.current.contains(event.target) &&
       !this.cartLayoutRef.current.contains(event.target)
     ) {
-      this.setState({
-        showCart: false,
-      });
+      closeCartLayout();
     }
   };
 
@@ -113,8 +111,11 @@ class Navbar extends Component {
       increaseQuantity,
       decreaseQuantity,
       deleteItem,
+      getHeight,
+      showCart,
+      openOrCloseCartLayout,
     } = this.props;
-    const { categories, arrow, currencies, showCart } = this.state;
+    const { categories, arrow, currencies } = this.state;
     const { changeArrow, wrapperRef, myRef, currencyRef, cartLayoutRef } = this;
     return (
       <div style={{ position: "relative" }}>
@@ -169,10 +170,10 @@ class Navbar extends Component {
                 <FontAwesomeIcon
                   onClick={
                     arrow === faCaretDown
-                      ? () =>
-                          this.setState({
-                            showCart: !this.state.showCart,
-                          })
+                      ? () => {
+                          openOrCloseCartLayout();
+                          getHeight();
+                        }
                       : null
                   }
                   icon={faShoppingCart}
@@ -188,7 +189,7 @@ class Navbar extends Component {
                   top: "70px",
                   backgroundColor: "rgba(255,255,255,1)",
                   right: "1px",
-                  zIndex: "1",
+                  zIndex: "2",
                   maxWidth: "325px",
                 }}>
                 <CartLayout

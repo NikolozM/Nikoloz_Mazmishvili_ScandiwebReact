@@ -179,10 +179,14 @@ class CartSingleItem extends Component {
           {/* <img className="cart--image" src={item.cartImg}></img> */}
           <img className="cart--image" src={item.gallery[imageIndex]}></img>
 
-          <div 
-          onClick={()=> imageIndex > 0 ? this.setState({
-            imageIndex: imageIndex - 1
-          }) : null }
+          <div
+            onClick={() =>
+              imageIndex > 0
+                ? this.setState({
+                    imageIndex: imageIndex - 1,
+                  })
+                : null
+            }
             style={{
               position: "absolute",
               top: "80%",
@@ -192,10 +196,14 @@ class CartSingleItem extends Component {
             <img style={{ padding: "10px" }} src={VectorLeft} />
           </div>
 
-          <div 
-          onClick={()=> imageIndex < item.gallery.length - 1 ? this.setState({
-            imageIndex: imageIndex + 1
-          }) : null }
+          <div
+            onClick={() =>
+              imageIndex < item.gallery.length - 1
+                ? this.setState({
+                    imageIndex: imageIndex + 1,
+                  })
+                : null
+            }
             style={{
               position: "absolute",
               top: "80%",

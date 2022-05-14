@@ -242,3 +242,14 @@ body {
   color:rgb(255, 255, 255);
   transition: 0.5s;
 }
+
+
+#overlayBackground{
+  position: absolute;
+  width : 100%;
+  right:0;
+  top:80px;
+  left:0;
+  background-color: rgba(57, 55, 72, 0.22);
+  z-index:2;
+}

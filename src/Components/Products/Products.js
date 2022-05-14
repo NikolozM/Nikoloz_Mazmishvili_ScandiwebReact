@@ -3,7 +3,14 @@ import Product from "./Product";
 
 class Products extends Component {
   render() {
-    const { products, currencyIndex} = this.props;
+    const {
+      products,
+      currencyIndex,
+      addItemCart,
+      cartItem,
+      checkSameItem,
+      chooseSameItem,
+    } = this.props;
     return (
       <div className="cards-list">
         {products.map((product) => (
@@ -11,6 +18,10 @@ class Products extends Component {
             key={product.id}
             product={product}
             currencyIndex={currencyIndex}
+            addItemCart={addItemCart}
+            cartItem={cartItem}
+            checkSameItem={checkSameItem}
+            chooseSameItem={chooseSameItem}
           />
         ))}
       </div>
