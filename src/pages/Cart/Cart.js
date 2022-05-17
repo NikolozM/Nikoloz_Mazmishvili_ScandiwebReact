@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CartSingleItem from "../../Components/CartComponents/cartSingleItem";
+import "./Cart.css";
 
 class Cart extends Component {
   render() {
@@ -23,6 +24,7 @@ class Cart extends Component {
           <div style={{ padding: "0px 100px 0px 100px" }}>
             {cartItem.map(
               (item) => (
+                // eslint-disable-next-line no-sequences
                 (total += item.price[0][currencyIndex] * item.count),
                 (symbol = item.symbol[0][currencyIndex]),
                 (
@@ -40,8 +42,7 @@ class Cart extends Component {
             )}
           </div>
 
-          <div
-            style={{ padding: "0px 100px 0px 100px", marginBottom: "258px" }}>
+          <div className="qty">
             <h3>Qty:{quantity}</h3>
             <h3>
               Total: {symbol} {Math.floor(total)}{" "}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import RenderAttr from "../RenderAttr";
+import "./CartLayout.css";
 
 class LayoutItem extends Component {
   render() {
@@ -11,52 +12,17 @@ class LayoutItem extends Component {
       deleteItem,
     } = this.props;
     return (
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "2fr 0.5fr 3fr",
-          marginBottom: "40px",
-        }}>
+      <div className="layout-item-container">
         <div>
-          <div style={{ marginBottom: "4px" }}>
-            <p
-              style={{
-                fontFamily: "Raleway",
-                fontSize: "16px",
-                fontWeight: "300 Light",
-                margin: "0px",
-              }}>
-              {item.name}
-            </p>
-            <p
-              style={{
-                fontFamily: "Raleway",
-                fontSize: "16px",
-                fontWeight: "300 Light",
-                margin: "0px",
-              }}>
-              {item.bottomname}
-            </p>
+          <div className="item-name">
+            <p>{item.name}</p>
+            <p>{item.bottomname}</p>
           </div>
-          <div>
-            <p
-              style={{
-                fontFamily: "Raleway",
-                fontSize: "16px",
-                fontWeight: "700",
-                display: "inline",
-                margin: "0px",
-              }}>
+          <div className="symbol-price">
+            <p>
               <span>{item.symbol ? item.symbol[0][currencyIndex] : null}</span>
             </p>
-            <p
-              style={{
-                fontFamily: "Raleway",
-                fontSize: "16px",
-                fontWeight: "700",
-                display: "inline",
-                margin: "0px",
-              }}>
+            <p>
               <span>{item.symbol ? item.price[0][currencyIndex] : null}</span>
             </p>
           </div>
@@ -117,62 +83,33 @@ class LayoutItem extends Component {
           </div>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}>
+        <div className="increase-decrease-button">
           <div
-            style={{
-              border: "1px solid #1D1F22",
-              marginTop: "10px",
-              cursor: "pointer",
-            }}
+            className="increase-button"
             onClick={() => {
               increaseQuantity();
               item.count = item.count + 1;
             }}>
-            <p
-              style={{
-                display: "inline",
-                padding: "2px 8px 3px 8px",
-                alignItems: "center",
-              }}>
-              +
-            </p>
+            <p>+</p>
           </div>
 
-          <div style={{}}>
-            <h1
-              style={{
-                fontSize: "16px",
-                fontFamily: "Raleway",
-                transform: "translate(+30%)",
-              }}>
-              {item.count}
-            </h1>
+          <div className="count-button">
+            <h1>{item.count}</h1>
           </div>
 
           <div
-            style={{
-              border: "1px solid #1D1F22",
-              marginBottom: "10px",
-              cursor: "pointer",
-            }}
+            className="decrease-button"
             onClick={() => {
               decreaseQuantity();
               item.count = item.count - 1;
               deleteItem(item);
             }}>
-            <p style={{ display: "inline", padding: "10px" }}>-</p>
+            <p>-</p>
           </div>
         </div>
 
         <div style={{ paddingLeft: "8px" }}>
-          <img
-            style={{ height: "190px", width: "100%", objectFit: "contain" }}
-            src={item.cartImg}></img>
+          <img className="cart-item-img" src={item.cartImg} alt=""></img>
         </div>
       </div>
     );

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import RenderAttr from "../RenderAttr";
 import VectorRight from "../../assets/VectorRight.png";
 import VectorLeft from "../../assets/VectorLeft.png";
+import "../.././pages/Cart/Cart.css";
 class CartSingleItem extends Component {
   state = {
     imageIndex: 0,
@@ -16,73 +17,24 @@ class CartSingleItem extends Component {
     } = this.props;
     const { imageIndex } = this.state;
     return (
-      <div
-        style={{
-          display: "flex",
-          position: "relative",
-          alignItems: "center",
-          justifyContent: "space-between",
-          borderBottom: "2px solid #E5E5E5",
-          borderTop: "2px solid #E5E5E5",
-        }}>
+      <div className="container">
         <div>
-          <h3
-            style={{
-              fontFamily: "Raleway",
-              fontSize: "30px",
-              fontWeight: "600",
-              marginTop: "24px",
-              marginBottom: "16px",
-            }}>
-            {item.name}
-          </h3>
-          <h3
-            style={{
-              fontFamily: "Raleway",
-              fontSize: "30px",
-              fontWeight: "400",
-              marginBottom: "20px",
-            }}>
-            {item.bottomname}
-          </h3>
+          <h3 className="name">{item.name}</h3>
+          <h3 className="bottomName">{item.bottomname}</h3>
 
-          <h3
-            style={{
-              fontFamily: "Raleway",
-              fontSize: "24px",
-              fontWeight: "700",
-              marginBottom: "20px",
-              display: "inline",
-            }}>
+          <h3 className="symbol">
             <span>{item.symbol[0][currencyIndex]}</span>
           </h3>
 
-          <h3
-            style={{
-              fontFamily: "Raleway",
-              fontSize: "24px",
-              fontWeight: "700",
-              marginBottom: "20px",
-              display: "inline",
-            }}>
+          <h3 className="price">
             <span>{item.price[0][currencyIndex]}</span>
           </h3>
 
-          <div style={{}}>
+          <div>
             {item.cartAttributes.map((item) => {
               return (
-                <ul
-                  key={item.name}
-                  style={{ listStyle: "none", paddingLeft: "0px" }}>
-                  <h4
-                    style={{
-                      fontFamily: "Raleway",
-                      fontSize: "18px",
-                      fontWeight: "700 bold",
-                      marginBottom: "25px",
-                    }}>
-                    {item.name}
-                  </h4>
+                <ul key={item.name} className="ul">
+                  <h4 className="attributeName">{item.name}</h4>
 
                   <li
                     style={
@@ -122,34 +74,11 @@ class CartSingleItem extends Component {
             increaseQuantity();
             item.count = item.count + 1;
           }}
-          style={{
-            position: "absolute",
-            top: "24px",
-            right: "20%",
-            border: "1px solid #1D1F22",
-            cursor: "pointer",
-          }}>
-          <h2
-            style={{
-              margin: "0",
-              padding: "15px 15px 15px 15px",
-              alignItems: "center",
-            }}>
-            +
-          </h2>
+          className="countIncreaseButton">
+          <h2>+</h2>
         </div>
         <div>
-          <h1
-            style={{
-              position: "absolute",
-              top: "46%",
-              right: "21%",
-              transform: "translate(+0%, -50%)",
-              fontSize: "24px",
-              fontFamily: "Raleway",
-            }}>
-            {item.count}
-          </h1>
+          <h1 className="count">{item.count}</h1>
         </div>
 
         <div
@@ -158,28 +87,17 @@ class CartSingleItem extends Component {
             item.count = item.count - 1;
             deleteItem(item);
           }}
-          style={{
-            position: "absolute",
-            bottom: "24px",
-            right: "20%",
-            border: "1px solid #1D1F22",
-            cursor: "pointer",
-          }}>
-          <h2
-            style={{
-              margin: "0",
-              padding: "15px 17px 15px 17px",
-              alignItems: "center",
-            }}>
-            -
-          </h2>
+          className="countDecreaseButton">
+          <h2>-</h2>
         </div>
 
         <div>
-          {/* <img className="cart--image" src={item.cartImg}></img> */}
-          <img className="cart--image" src={item.gallery[imageIndex]}></img>
+          <img
+            className="cart--image"
+            src={item.gallery[imageIndex]}
+            alt=""></img>
 
-          <div
+          <div style ={{display: item.gallery.length > 1 ? "block" : "none"}}
             onClick={() =>
               imageIndex > 0
                 ? this.setState({
@@ -187,16 +105,11 @@ class CartSingleItem extends Component {
                   })
                 : null
             }
-            style={{
-              position: "absolute",
-              top: "80%",
-              right: "6%",
-              backgroundColor: "rgba(0, 0, 0, 0.73)",
-            }}>
-            <img style={{ padding: "10px" }} src={VectorLeft} />
+            className="vectorLeft">
+            <img style={{ padding: "10px",display: "block" }} src={VectorLeft} alt="" />
           </div>
 
-          <div
+          <div style ={{display: item.gallery.length > 1 ? "block" : "none"}}
             onClick={() =>
               imageIndex < item.gallery.length - 1
                 ? this.setState({
@@ -204,13 +117,8 @@ class CartSingleItem extends Component {
                   })
                 : null
             }
-            style={{
-              position: "absolute",
-              top: "80%",
-              right: "2%",
-              backgroundColor: "rgba(0, 0, 0, 0.73)",
-            }}>
-            <img style={{ padding: "10px" }} src={VectorRight} />
+            className="vectorRight">
+            <img style={{ padding: "10px" , display: "block" }} src={VectorRight} alt="" />
           </div>
         </div>
       </div>

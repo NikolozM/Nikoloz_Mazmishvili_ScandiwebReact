@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LayoutItem from "./LayoutItem";
 import { Link } from "react-router-dom";
+import "./CartLayout.css";
 
 class CartLayout extends Component {
   render() {
@@ -16,20 +17,9 @@ class CartLayout extends Component {
     let symbol;
     if (cartItem.length > 0) {
       return (
-        <div
-          style={{
-            width: "325px",
-            boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)",
-            padding: "32px 16px 32px 16px",
-          }}>
-          <div
-            style={{
-              margin: "0",
-              marginBottom: "32px",
-              fontFamily: "Raleway",
-              fontSize: "16px",
-              fontWeight: "700",
-            }}>
+        <div 
+        className="CartLayoutContainer">
+          <div  className="myBagItems">
             {quantity > 1 ? (
               <p>My bag, {quantity} items</p>
             ) : (
@@ -40,6 +30,7 @@ class CartLayout extends Component {
           <div className="scrollBar">
             {cartItem.map(
               (item) => (
+                // eslint-disable-next-line no-sequences
                 (total += item.price[0][currencyIndex] * item.count),
                 (symbol = item.symbol[0][currencyIndex]),
                 (
@@ -55,34 +46,17 @@ class CartLayout extends Component {
               )
             )}
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginTop: "30px",
-            }}>
+          <div className="total">
             <span style={{ fontFamily: "Roboto" }}>Total</span>
             <span style={{ fontFamily: "Roboto" }}>
               {symbol} {Math.floor(total)}
             </span>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-around",
-              marginTop: "30px",
-            }}>
+          <div className="viewBag">
             <Link to={"/Cart"}>
               {" "}
-              <button
-                style={{
-                  width: "200px",
-                  backgroundColor: "white",
-                  border: "2px solid black",
-                  color: "black",
-                  cursor: "pointer",
-                }}>
+              <button className="viewBagButton">
                 <h5>VIEW BAG</h5>
               </button>
             </Link>
@@ -91,21 +65,8 @@ class CartLayout extends Component {
       );
     } else {
       return (
-        <div
-          style={{
-            width: "325px",
-            height: "425px",
-            boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)",
-            display: "flex",
-            justifyContent: "center",
-          }}>
-          <h2
-            style={{
-              marginBottom: "64px",
-              fontFamily: "Raleway",
-              fontSize: "24px",
-              fontWeight: "700",
-            }}>
+        <div className="emptyCart">
+          <h2>
             CART IS EMTPY
           </h2>
         </div>

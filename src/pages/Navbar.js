@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import CartLayout from "../Components/CartLayout/CartLayout";
 import { client } from "../index";
+import { getCategory } from "./.././GraphQL/Queries";
 
 class Navbar extends Component {
   state = {
@@ -19,19 +20,11 @@ class Navbar extends Component {
     currencies: [],
   };
 
-  getCategories() {
+  getCategories = () => {
     client
       .query({
         query: gql`
-          query {
-            categories {
-              name
-            }
-            currencies {
-              label
-              symbol
-            }
-          }
+          ${getCategory()}
         `,
       })
       .then((res) => {
@@ -47,7 +40,7 @@ class Navbar extends Component {
           )),
         });
       });
-  }
+  };
 
   changeArrow = () => {
     if (this.state.arrow === faCaretDown) {
@@ -128,7 +121,7 @@ class Navbar extends Component {
           </div>
 
           <div style={{ margin: "auto" }}>
-            <img className="logo" src={logo} />
+            <img className="logo" src={logo} alt="" />
           </div>
 
           <div

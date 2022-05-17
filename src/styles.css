@@ -34,21 +34,21 @@ body {
 }
 
 .card {
-  width: 24.723%;
-  font-size: 12px;
-  flex: 0 0 auto;
+  position: relative;
   display: flex;
   flex-direction: column;
-  position: relative;
-  margin: 20px;
+  padding:15px;
+  max-width: auto;
   margin-bottom: 103px;
 }
 
 .cards-list {
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  overflow-x: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 100px;
+  margin-bottom: 90px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .card--image {

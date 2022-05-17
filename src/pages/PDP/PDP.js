@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { gql } from "@apollo/client";
-import RenderAttr from "../../Components/RenderAttr";
 import { client } from "../../index";
 import withRouter from "../../Components/withRouter";
+import { getIndividualProduct } from "../.././GraphQL/Queries";
+import Attr from "./Attr";
+
 class PDP extends Component {
   state = {
     mainImage: [],
@@ -12,37 +14,14 @@ class PDP extends Component {
     id: this.props.router.params.id,
   };
 
-  getProduct() {
+  // fetching individual product from api depending on id
+
+  getIndividualProduct = () => {
     client
       .query({
         query: gql`
-            query{
-              product(id: "${this.state.id}"){
-                id,
-                name,
-                inStock,
-                gallery,
-                description,
-                attributes{
-                  id
-                  name
-                  type
-                  items{
-                    displayValue
-                    id
-                  }
-                }
-                prices{
-                  currency{
-                    label
-                    symbol
-                  }
-                  amount
-                }
-                brand
-              }
-            }
-            `,
+          ${getIndividualProduct(this.state.id)}
+        `,
       })
       .then((res) => {
         this.setState({
@@ -51,10 +30,10 @@ class PDP extends Component {
           gallery: res?.data?.product?.gallery,
         });
       });
-  }
+  };
 
   componentDidMount() {
-    this.getProduct();
+    this.getIndividualProduct();
   }
 
   render() {
@@ -65,6 +44,7 @@ class PDP extends Component {
       checkSameItem,
       chooseSameItem,
     } = this.props;
+
     const { mainImage, cartAttributes, product, gallery } = this.state;
 
     // small images to render , push with onClick method to change mainImage state
@@ -75,6 +55,7 @@ class PDP extends Component {
           key={i}
           src={gallery[i]}
           onClick={() => this.setState({ mainImage: gallery[i] })}
+          alt=""
         />
       );
     }
@@ -115,7 +96,7 @@ class PDP extends Component {
           <div className="product-pictures">
             <div className="more-pics">{images}</div>
             <div className="main-pic">
-              <img src={mainImage} />
+              <img src={mainImage} alt="" />
             </div>
           </div>
 
@@ -147,6 +128,13 @@ class PDP extends Component {
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       {prev.items.map((item) => {
                         const modifyAttributes = [...cartAttributes];
+                        const attributesToAdd = {
+                          name: prev.name,
+                          displayValue: item.displayValue,
+                        };
+                        const checked = modifyAttributes.find(
+                          (att) => att.name === prev.name
+                        );
                         return (
                           <li
                             key={item.id}
@@ -154,10 +142,6 @@ class PDP extends Component {
                               const sameItem = modifyAttributes.find(
                                 (atr) => atr.name === prev.name
                               );
-                              const attributesToAdd = {
-                                name: prev.name,
-                                displayValue: item.displayValue,
-                              };
                               const sameItemIndex =
                                 modifyAttributes.indexOf(sameItem);
 
@@ -174,14 +158,17 @@ class PDP extends Component {
                             }}
                             style={
                               prev.name === "Color"
-                                ? { backgroundColor: item.id }
-                                : null
+                                ? checked?.displayValue === item.displayValue
+                                  ? {
+                                      backgroundColor: item.displayValue,
+                                      transform:"scale(1.5)",
+                                    }
+                                  : { backgroundColor: item.displayValue }
+                                : checked?.displayValue === item.displayValue
+                                ? { backgroundColor: "black", color: "white" }
+                                : { backgroundColor: "white", color: "black" }
                             }>
-                            {prev.name === "Color" ? null : (
-                              <span style={{ fontFamily: "Roboto" }}>
-                                {RenderAttr(item)}
-                              </span>
-                            )}
+                            <Attr prev={prev} item={item} />
                           </li>
                         );
                       })}
@@ -217,11 +204,9 @@ class PDP extends Component {
 
             <div style={{ marginBottom: "40px" }}>
               <button
-                onClick={() =>
-                  checkSameItem(obj)
-                    ? chooseSameItem(obj)
-                    : addItemCart(product, obj, cartAttributes)
-                }
+                onClick={() =>checkSameItem(obj)
+                  ? chooseSameItem(obj)
+                  : addItemCart(product, obj, cartAttributes)}
                 className="add-to-cart-btn">
                 ADD TO CART
               </button>

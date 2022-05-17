@@ -8,7 +8,7 @@ class Product extends Component {
     cartIcon: false,
   };
 
-  iconRef = React.createRef();
+
 
   render() {
     const {
@@ -19,7 +19,7 @@ class Product extends Component {
       checkSameItem,
       chooseSameItem,
     } = this.props;
-    const { iconRef } = this;
+
     let cartImg = product.gallery[0];
     let gallery = [...product.gallery];
     let name = product?.name?.split(" ", 1);
@@ -38,7 +38,6 @@ class Product extends Component {
       }
     }
 
-    // cartAttributes.push(product?.attributes?.map((prev)=> prev.attributes[0]));
     symbol.push(product?.prices?.map((prev) => prev.currency.symbol));
     price.push(product?.prices?.map((prev) => prev.amount));
 
@@ -65,11 +64,12 @@ class Product extends Component {
         onMouseOver={() => this.setState({ cartIcon: true })}>
         <Link style={{ textDecoration: "none" }} to={`/PDP/${product.id}`}>
           {product.inStock ? (
-            <img className="card--image" src={product.gallery[0]}></img>
+            <img className="card--image" src={product.gallery[0]} alt=""></img>
           ) : (
             <img
               className="outStock--card--image"
-              src={product.gallery[0]}></img>
+              src={product.gallery[0]}
+              alt=""></img>
           )}
 
           {product.inStock ? null : (
@@ -77,7 +77,6 @@ class Product extends Component {
           )}
 
           <div
-            ref={iconRef}
             onClick={(e) => {
               e.preventDefault();
               checkSameItem(obj)
@@ -91,10 +90,11 @@ class Product extends Component {
               right: "5%",
               zIndex: "2",
             }}>
-            <img src={Surface}></img>
+            <img src={Surface} alt=""></img>
             <img
               style={{ position: "absolute", top: "35%", left: "25%" }}
-              src={Vector}></img>
+              src={Vector}
+              alt=""></img>
           </div>
 
           <h3

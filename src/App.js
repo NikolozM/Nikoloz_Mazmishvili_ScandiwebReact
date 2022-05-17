@@ -7,6 +7,7 @@ import Navbar from "./pages/Navbar";
 import { Routes, Route } from "react-router-dom";
 import { client } from "./index";
 import _ from "lodash";
+import { getProduct } from "./GraphQL/Queries";
 
 import {
   faYenSign,
@@ -30,53 +31,20 @@ class App extends Component {
     showCart: false,
   };
 
-  getProducts() {
+  // fetch products from api depending on category
+  getProducts = () => {
     client
       .query({
         query: gql`
-            query{
-              category(input: {title: "${this.state.category}"}){
-                products {
-                  id
-                  name
-                  inStock
-                  category
-                  gallery
-                  attributes{
-                    id
-                    name
-                    type
-                    items{
-                      displayValue
-                      id
-                    }
-                  }
-                  prices{
-                    currency{
-                      label
-                      symbol
-                    }
-                    amount
-                  }
-                  brand
-                }
-              },
-              categories{
-                name
-              },
-              currencies{
-                label
-                symbol
-              }
-            }
-            `,
+          ${getProduct(this.state.category)}
+        `,
       })
       .then((res) => {
         this.setState({
           products: res?.data?.category?.products,
         });
       });
-  }
+  };
 
   // onClick chooses category and renders items by category. This func goes by props to category
   chooseCategory = (name) => {
@@ -131,9 +99,6 @@ class App extends Component {
   // check if adding same item with same attributes
 
   checkSameItem = (obj) => {
-    // const cartContent = [...this.state.cartItem];
-    // let index = cartContent.findIndex(item => (item.cartAttributes.every((spec, i) => spec.displayValue === cartAttributes[i].displayValue)))
-    // console.log(index);
     for (let i = 0; i < this.state.cartItem.length; i++) {
       if (
         _.isEqual(obj.name, this.state.cartItem[i].name) &&
@@ -150,6 +115,7 @@ class App extends Component {
         _.isEqual(obj.name, this.state.cartItem[i].name) &&
         _.isEqual(obj.cartAttributes, this.state.cartItem[i].cartAttributes)
       ) {
+        // eslint-disable-next-line react/no-direct-mutation-state
         this.state.cartItem[i].count = this.state.cartItem[i].count + 1;
         this.setState({
           quantity: this.state.quantity + 1,
@@ -173,7 +139,7 @@ class App extends Component {
 
   // if product does not have attributes item adding without att choosing, but if it has , choosing att is mandatory.
   addItemCart = (product, obj, cartAttributes) => {
-    console.log(cartAttributes);
+
     if (product?.attributes == false && product?.inStock) {
       this.setState({
         cartItem: [...this.state.cartItem, obj],
