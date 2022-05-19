@@ -1,0 +1,147 @@
+.emptyCart{
+    width: 325px;
+    height: 425px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+}
+
+.emptyCart h2{
+    margin-bottom: 64px;
+    font-family: Raleway;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.CartLayoutContainer{
+    width: 325px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 32px 16px 32px 16px;
+}
+
+
+.myBagItems{
+    margin: 0;
+    margin-bottom: 32px;
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.total{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.viewBag{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 30px;
+}
+
+.viewBagButton{
+    width: 200px;
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+    cursor: pointer;
+}
+
+
+/* LayoutItem */
+
+.layout-item-container{
+    display: grid;
+    grid-template-columns: 2fr 0.5fr 3fr;
+    margin-bottom: 40px;
+}
+
+.container{
+    display:flex;
+    position:relative;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:2px solid #E5E5E5;
+    border-top:2px solid #E5E5E5;
+}
+
+.layout-item-container ul {
+    display: grid;
+    list-style: none;
+    margin: 0;
+    max-width: 50px;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+  .layout-item-container ul li {
+    text-align: center;
+    margin: 1px;
+    padding: 3px 3px 3px 3px;
+    border: 1px solid black;
+    font-size: 0.7em;
+    transition: 0.8s;
+  }
+  .attributeName{
+    font-family: Raleway;
+    font-size: 18px;
+    font-weight: 700 bold;
+    margin-bottom: 25px;
+}
+
+.item-name{
+    margin-bottom:4px;
+}
+
+.item-name p{
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 300 Light;
+    margin: 0px;
+}
+
+.symbol-price p {
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 700;
+    display: inline;
+    margin: 0px;
+}
+
+.increase-decrease-button{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.increase-button{
+    border: 1px solid #1D1F22;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.increase-button p{
+    display: inline;
+    padding: 2px 8px 3px 8px;
+    align-items: center;
+}
+
+.count-button h1 {
+    font-size: 16px;
+    font-family: Raleway;
+    transform: translate(+30%);
+}
+
+.decrease-button{
+    border: 1px solid #1D1F22;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.decrease-button p{
+    display: inline;
+    padding: 10px;
+}
+.cart-item-img{
+    height: 190px;
+    width: 100%;
+    object-fit: contain;
+}
