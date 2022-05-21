@@ -228,7 +228,7 @@ body {
 }
 
 .outstock-button {
-  background-color: #99f8b4;
+  background-color: #737b75;
   border: none;
   color: white;
   width: 100%;
@@ -421,4 +421,52 @@ body {
   padding: 5px;
   align-items: end;
   cursor: pointer;
+}
+
+.bag-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 120%;
+  height: 43px;
+  width: 140px;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  font-family: Roboto;
+  background-color: #ffffff;
+  text-decoration: none;
+}
+
+.bag-button:hover {
+  background-color: #333;
+  color: white;
+}
+
+.checkout-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(94, 206, 123, 1);
+  font-size: 14px;
+  line-height: 120%;
+  font-weight: 600;
+  color: #fff;
+  height: 43px;
+  width: 140px;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  font-family: Roboto;
+}
+
+.button-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button-container *{
+  text-decoration:none;
 }

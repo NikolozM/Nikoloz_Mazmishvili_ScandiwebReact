@@ -56,6 +56,11 @@ class CartSingleItem extends Component {
                                     backgroundColor:
                                       att.displayValue,
                                     transform: "scale(1.3)",
+                                    boxSizing: "border-box",
+                                    border:
+                                      "1px double white",
+                                    outline:
+                                      "1px solid #5ECE7B",
                                   }
                                 : {
                                     backgroundColor:

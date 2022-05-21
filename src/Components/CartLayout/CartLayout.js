@@ -55,13 +55,16 @@ class CartLayout extends Component {
             </span>
           </div>
 
-          <div className='viewBag'>
+          {/* vievBag viewBagButton*/}
+
+          <div className='button-container'>
             <Link to={"/Cart"}>
               {" "}
-              <button className='viewBagButton'>
-                <h5>VIEW BAG</h5>
+              <button className='bag-button'>
+                VIEW BAG
               </button>
             </Link>
+            <button className="checkout-button">CHECK OUT</button>
           </div>
         </div>
       );

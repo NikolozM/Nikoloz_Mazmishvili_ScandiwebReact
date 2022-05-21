@@ -59,14 +59,19 @@ class LayoutItem extends Component {
                                 ? {
                                     backgroundColor:
                                       att.displayValue,
-                                    transform: "scale(1.9)",
-                                    margin: "3px",
+                                    transform: "scale(1.7)",
+                                    margin: "5px",
+                                    boxSizing: "border-box",
+                                    border:
+                                      "1px double white",
+                                    outline:
+                                      "1px solid #5ECE7B",
                                   }
                                 : {
                                     backgroundColor:
                                       att.displayValue,
-                                    transform: "scale(1.4)",
-                                    margin: "3px",
+                                    transform: "scale(1.5)",
+                                    margin: "5px",
                                   }
                               : checked?.displayValue ===
                                 att.displayValue

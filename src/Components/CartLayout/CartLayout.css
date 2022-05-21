@@ -54,7 +54,7 @@
 
 .layout-item-container{
     display: grid;
-    grid-template-columns: 2fr 0.5fr 3fr;
+    grid-template-columns: 3.0fr 0.1fr 2.9fr;
     margin-bottom: 40px;
 }
 
@@ -77,17 +77,17 @@
   }
   .layout-item-container ul li {
     text-align: center;
-    margin: 1px;
-    padding: 3px 3px 3px 3px;
-    border: 1px solid black;
-    font-size: 0.7em;
+    margin: 2px;
+    padding: 4px 4px 4px 4px;
+    border: 0.5px solid black;
+    font-size: 0.8em;
     transition: 0.8s;
   }
   .attributeName{
     font-family: Raleway;
-    font-size: 18px;
-    font-weight: 700 bold;
-    margin-bottom: 25px;
+    font-size: 14px;
+    font-weight: 400 ;
+    margin-bottom: 10px;
 }
 
 .item-name{
@@ -151,4 +151,5 @@
 .layout-attributes{
     display:flex;
     flex-direction: row;
+    font-family: Roboto;
 }

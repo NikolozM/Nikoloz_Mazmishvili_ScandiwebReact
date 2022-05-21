@@ -192,6 +192,12 @@ class PDP extends Component {
                                         item.displayValue,
                                       transform:
                                         "scale(1.5)",
+                                      boxSizing:
+                                        "border-box",
+                                      border:
+                                        "1px double white",
+                                      outline:
+                                        "1px solid #5ECE7B",
                                     }
                                   : {
                                       backgroundColor:
