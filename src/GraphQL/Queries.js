@@ -28,13 +28,6 @@ export const getProduct = (category) => {
           }
           brand
         }
-      },
-      categories{
-        name
-      },
-      currencies{
-        label
-        symbol
       }
     }
     `;

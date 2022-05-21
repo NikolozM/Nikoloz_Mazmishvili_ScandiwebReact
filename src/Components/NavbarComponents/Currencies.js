@@ -12,9 +12,7 @@ class Currencies extends Component {
           changeArrow();
         }}
       >
-        <span style={{ paddingRight: "5px" }}>
-          {symbol}
-        </span>
+        <span>{symbol}</span>
         {label}
       </div>
     );

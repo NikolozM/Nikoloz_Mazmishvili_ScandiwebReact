@@ -21,7 +21,7 @@ class Cart extends Component {
             <h1 className='renderCartName'>CART</h1>
           </div>
 
-          <div style={{ padding: "0px 100px 0px 100px" }}>
+          <div className="cart-list">
             {cartItem.map(
               (item) => (
                 // eslint-disable-next-line no-sequences

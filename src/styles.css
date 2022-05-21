@@ -7,7 +7,7 @@ body {
 }
 
 .fontSize {
-  font-family: "Raleway", sans-serif;
+  font-family: Raleway, sans-serif;
   align-items: center;
   font-size: 18px;
   color: #1d1f22;
@@ -24,6 +24,10 @@ body {
   align-items: center;
 }
 
+.relative {
+  position: relative;
+}
+
 .navBarHeight {
   height: 80px;
   margin-left: 0;
@@ -37,9 +41,10 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding:15px;
+  padding: 15px;
   max-width: auto;
   margin-bottom: 103px;
+  transition: 0.5s;
 }
 
 .cards-list {
@@ -51,7 +56,13 @@ body {
   margin-right: 100px;
 }
 
-.card--image {
+.card:hover {
+  box-shadow: 1px 1px 1px rgb(212, 241, 215);
+  transform: scale(1.02);
+  border-radius: 10px;
+}
+
+.inStock--card--image {
   width: 100%;
   border-radius: 9px;
   margin-bottom: 9px;
@@ -73,20 +84,22 @@ body {
   top: 35%;
   left: 25%;
   color: #8d8f9a;
-  font-family: "Raleway", sans-serif;
+  font-family: Raleway, sans-serif;
   font-size: 24px;
   font-weight: 400;
 }
 
 .outStock--card--id--price {
-  font-family: "Raleway", sans-serif;
+  font-family: Raleway, sans-serif;
   align-items: center;
   font-size: 18px;
   color: #8d8f9a;
   font-weight: 300;
 }
-
 .logo {
+  margin: auto;
+}
+.logo img {
   width: 31px;
   height: 28px;
   object-fit: contain;
@@ -95,7 +108,7 @@ body {
 .navbar {
   font-size: 16px;
   margin-right: 20px;
-  font-family: "Raleway", sans-serif;
+  font-family: Raleway, sans-serif;
   color: #1d1f22;
 }
 
@@ -112,7 +125,7 @@ body {
   display: block;
   margin-bottom: 87px;
   color: #1d1f22;
-  font-family: "Raleway", sans-serif;
+  font-family: Raleway, sans-serif;
   font-weight: 400;
 }
 
@@ -123,12 +136,12 @@ body {
   display: block;
   margin-bottom: 55px;
   color: #1d1f22;
-  font-family: "Raleway", sans-serif;
+  font-family: Raleway, sans-serif;
   font-weight: 700, bold;
 }
 
-.Currencies {
-  font-family: "Raleway", sans-serif;
+.currencies-on {
+  font-family: Raleway;
   font-weight: 700;
   flex-direction: column;
   position: absolute;
@@ -138,6 +151,9 @@ body {
   padding: 20px;
   z-index: 1;
   background-color: rgba(255, 255, 255, 1);
+  display: flex;
+  cursor: pointer;
+  gap: 5px;
 }
 
 .product-pictures {
@@ -211,7 +227,7 @@ body {
   padding: 20px 0;
 }
 
-.outstock-button{
+.outstock-button {
   background-color: #99f8b4;
   border: none;
   color: white;
@@ -223,7 +239,7 @@ body {
 /* cart styles */
 
 .cart--image {
-  position:relative;
+  position: relative;
   width: 200px;
   border-radius: 9px;
   height: 100%;
@@ -246,19 +262,163 @@ body {
   overflow: auto;
 }
 
-.hover:hover{
-  background-color:#0000008a;
-  color:rgb(255, 255, 255);
+.hover:hover {
+  background-color: #0000008a;
+  color: rgb(255, 255, 255);
   transition: 0.5s;
 }
 
+.hover span {
+  padding-right: 5px;
+}
 
-#overlayBackground{
+#overlayBackground {
   position: absolute;
-  width : 100%;
-  right:0;
-  top:80px;
-  left:0;
+  width: 100%;
+  right: 0;
+  top: 80px;
+  left: 0;
   background-color: rgba(57, 55, 72, 0.22);
-  z-index:2;
+  z-index: 2;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.vector-image {
+  position: absolute;
+  top: 35%;
+  left: 25%;
+}
+
+.surface-on {
+  position: absolute;
+  display: flex;
+  top: 66%;
+  right: 5%;
+  z-index: 2;
+}
+
+.surface-off {
+  display: none;
+}
+
+.name {
+  width: 70%;
+  font-weight: 600;
+}
+
+.bottom-name {
+  width: 70%;
+  font-weight: 400;
+  margin-top: -15px;
+}
+
+.attribute-name {
+  font-family: Roboto;
+  text-transform: uppercase;
+}
+
+.attributes {
+  display: flex;
+  flex-direction: row;
+}
+
+.roboto {
+  font-family: Roboto;
+}
+
+.price {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-family: Roboto;
+}
+
+.symbol-amount {
+  margin-bottom: 20px;
+}
+
+.symbol-amount span h2 {
+  display: inline;
+}
+
+.add-button {
+  margin-bottom: 40px;
+}
+
+.description {
+  font-family: Roboto;
+  font-weight: 400;
+}
+
+.more-less {
+  cursor: pointer;
+}
+
+.right-navbar {
+  padding-left: 22px;
+}
+
+.shoppingcart-icon {
+  align-items: start;
+  cursor: pointer;
+}
+
+.cart-layout {
+  display: flex;
+  position: absolute;
+  left: 70%;
+  top: 70px;
+  background-color: rgba(255, 255, 255, 1);
+  right: 1px;
+  z-index: 2;
+  max-width: 325px;
+}
+
+.qty-icon {
+  position: absolute;
+  top: 17px;
+  margin-left: 8px;
+}
+
+.quantity-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin: 0;
+  border-radius: 50%;
+  background-color: black;
+  color: white;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.quantity-icon span {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, +5%);
+  font-family: Roboto;
+}
+
+.nav-container1 {
+  display: flex;
+  padding-right: 150px;
+  align-items: center;
+}
+
+.nav-container2 {
+  display: flex;
+  padding-left: 100px;
+}
+
+.currency-icon {
+  align-items: center;
+}
+
+.arrow-icon {
+  padding: 5px;
+  align-items: end;
+  cursor: pointer;
 }

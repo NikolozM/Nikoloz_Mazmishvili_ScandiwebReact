@@ -72,13 +72,10 @@ class Product extends Component {
           this.setState({ cartIcon: true })
         }
       >
-        <Link
-          style={{ textDecoration: "none" }}
-          to={`/PDP/${product.id}`}
-        >
+        <Link className='link' to={`/PDP/${product.id}`}>
           {product.inStock ? (
             <img
-              className='card--image'
+              className='inStock--card--image'
               src={product.gallery[0]}
               alt=''
             ></img>
@@ -98,30 +95,21 @@ class Product extends Component {
           )}
 
           <div
+            className={
+              this.state.cartIcon && product.inStock
+                ? "surface-on"
+                : "surface-off"
+            }
             onClick={(e) => {
               e.preventDefault();
               checkSameItem(obj)
                 ? chooseSameItem(obj)
                 : addItemCart(product, obj, cartAttributes);
             }}
-            style={{
-              position: "absolute",
-              display:
-                this.state.cartIcon && product.inStock
-                  ? "flex"
-                  : "none",
-              top: "66%",
-              right: "5%",
-              zIndex: "2",
-            }}
           >
             <img src={Surface} alt=''></img>
             <img
-              style={{
-                position: "absolute",
-                top: "35%",
-                left: "25%",
-              }}
+              className='vector-image'
               src={Vector}
               alt=''
             ></img>

@@ -12,95 +12,122 @@ class LayoutItem extends Component {
       deleteItem,
     } = this.props;
     return (
-      <div className="layout-item-container">
+      <div className='layout-item-container'>
         <div>
-          <div className="item-name">
+          <div className='item-name'>
             <p>{item.name}</p>
             <p>{item.bottomname}</p>
           </div>
-          <div className="symbol-price">
+          <div className='symbol-price'>
             <p>
-              <span>{item.symbol ? item.symbol[0][currencyIndex] : null}</span>
+              <span>
+                {item.symbol
+                  ? item.symbol[0][currencyIndex]
+                  : null}
+              </span>
             </p>
             <p>
-              <span>{item.symbol ? item.price[0][currencyIndex] : null}</span>
+              <span>
+                {item.symbol
+                  ? item.price[0][currencyIndex]
+                  : null}
+              </span>
             </p>
           </div>
 
-
-<div>
-              {item.attributes?.map((prev) => {
-                return (
-                  <ul  key={prev.id}>
-                    <h4 className="attributeName">
-                      {prev.name} {prev.name ? <span>:</span> : null}
-                    </h4>
-                    <div style={{ display: "flex", flexDirection: "row" }}>
-                      {prev.items.map((att) => {
-                        const checked = item.cartAttributes.find(
+          <div>
+            {item.attributes?.map((prev) => {
+              return (
+                <ul key={prev.id}>
+                  <h4 className='attributeName'>
+                    {prev.name}{" "}
+                    {prev.name ? <span>:</span> : null}
+                  </h4>
+                  <div className='layout-attributes'>
+                    {prev.items.map((att) => {
+                      const checked =
+                        item.cartAttributes.find(
                           (att) => att.name === prev.name
                         );
-                        return (
-                          <li
-                            key={att.id}
-                            style={
-                              prev.name === "Color"
-                                ? checked?.displayValue === att.displayValue
-                                  ? {
-                                      backgroundColor: att.displayValue,
-                                      transform:"scale(1.9)",
-                                      margin:"3px"
-                                    }
-                                  : { backgroundColor: att.displayValue,
-                                    transform:"scale(1.4)",margin:"3px"}
-                                : checked?.displayValue === att.displayValue
-                                ? { backgroundColor: "black", color: "white" }
-                                : { backgroundColor: "white", color: "black" }
-                            }>
-                             {prev.name === "Color" ? <div></div> : 
-                              <span>
-                              {RenderAttr(att)}
-                            </span>}
-                          </li>
-                        );
-                      })}
-                    </div>
-                  </ul>
-                );
-              })}
-            </div>
-
-
-
+                      return (
+                        <li
+                          key={att.id}
+                          style={
+                            prev.name === "Color"
+                              ? checked?.displayValue ===
+                                att.displayValue
+                                ? {
+                                    backgroundColor:
+                                      att.displayValue,
+                                    transform: "scale(1.9)",
+                                    margin: "3px",
+                                  }
+                                : {
+                                    backgroundColor:
+                                      att.displayValue,
+                                    transform: "scale(1.4)",
+                                    margin: "3px",
+                                  }
+                              : checked?.displayValue ===
+                                att.displayValue
+                              ? {
+                                  backgroundColor: "black",
+                                  color: "white",
+                                }
+                              : {
+                                  backgroundColor: "white",
+                                  color: "black",
+                                }
+                          }
+                        >
+                          {prev.name === "Color" ? (
+                            <div></div>
+                          ) : (
+                            <span>{RenderAttr(att)}</span>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </div>
+                </ul>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="increase-decrease-button">
+        <div className='increase-decrease-button'>
           <div
-            className="increase-button"
+            className='increase-button'
             onClick={() => {
               increaseQuantity();
               item.count = item.count + 1;
-            }}>
+            }}
+          >
             <p>+</p>
           </div>
 
-          <div className="count-button">
+          <div className='count-button'>
             <h1>{item.count}</h1>
           </div>
 
           <div
-            className="decrease-button"
+            className='decrease-button'
             onClick={() => {
               decreaseQuantity();
               item.count = item.count - 1;
               deleteItem(item);
-            }}>
+            }}
+          >
             <p>-</p>
           </div>
         </div>
 
-        <div style={{ paddingLeft: "8px" }}>
-          <img className="cart-item-img" src={item.cartImg} alt=""></img>
+        <div>
+          <img
+            className='cart-item-img'
+            src={item.cartImg}
+            alt=''
+          ></img>
         </div>
       </div>
     );

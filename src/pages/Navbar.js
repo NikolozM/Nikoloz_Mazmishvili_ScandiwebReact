@@ -129,7 +129,7 @@ class Navbar extends Component {
       cartLayoutRef,
     } = this;
     return (
-      <div style={{ position: "relative" }}>
+      <div className='relative'>
         <div className='flex spaceBetween navBarHeight'>
           <div>
             <Categories
@@ -138,25 +138,14 @@ class Navbar extends Component {
             />
           </div>
 
-          <div style={{ margin: "auto" }}>
-            <img className='logo' src={logo} alt='' />
+          <div className='logo'>
+            <img src={logo} alt='' />
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              paddingRight: "150px",
-              alignItems: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                paddingLeft: "100px",
-              }}
-            >
+          <div className='nav-container1'>
+            <div className='nav-container2'>
               <FontAwesomeIcon
-                style={{ alignItems: "center" }}
+                className='currency-icon'
                 icon={currencySign}
               />
               <div
@@ -166,28 +155,23 @@ class Navbar extends Component {
                 }
               >
                 <FontAwesomeIcon
-                  style={{
-                    padding: "5px",
-                    alignItems: "end",
-                    cursor: "pointer",
-                  }}
+                  className='arrow-icon'
                   icon={arrow}
                 />
               </div>
               <div
                 ref={currencyRef}
-                className='Currencies'
-                style={{
-                  display:
-                    arrow === faCaretDown ? "none" : "flex",
-                  cursor: "pointer",
-                }}
+                className={
+                  arrow === faCaretDown
+                    ? "surface-off"
+                    : "currencies-on"
+                }
               >
                 {currencies}
               </div>
             </div>
 
-            <div style={{ paddingLeft: "22px" }}>
+            <div className='right-navbar'>
               <div ref={myRef}>
                 <FontAwesomeIcon
                   onClick={
@@ -199,24 +183,14 @@ class Navbar extends Component {
                       : null
                   }
                   icon={faShoppingCart}
-                  style={{
-                    alignItems: "start",
-                    cursor: "pointer",
-                  }}
+                  className='shoppingcart-icon'
                 />
               </div>
               <div
                 ref={cartLayoutRef}
-                style={{
-                  display: showCart ? "flex" : "none",
-                  position: "absolute",
-                  left: "70%",
-                  top: "70px",
-                  backgroundColor: "rgba(255,255,255,1)",
-                  right: "1px",
-                  zIndex: "2",
-                  maxWidth: "325px",
-                }}
+                className={
+                  showCart ? "cart-layout" : "surface-off"
+                }
               >
                 <CartLayout
                   cartItem={cartItem}
@@ -227,37 +201,9 @@ class Navbar extends Component {
                   deleteItem={deleteItem}
                 />
               </div>
-              <div
-                style={{
-                  position: "absolute",
-                  top: "17px",
-                  marginLeft: "8px",
-                }}
-              >
-                <div
-                  style={{
-                    position: "relative",
-                    width: "20px",
-                    height: "20px",
-                    display: "inline-block",
-                    margin: "0",
-                    borderRadius: "50%",
-                    backgroundColor: "black",
-                    color: "white",
-                    fontSize: "0.9em",
-                    textAlign: "center",
-                  }}
-                >
-                  <span
-                    style={{
-                      position: "absolute",
-                      left: "50%",
-                      transform: "translate(-50%,+5%)",
-                      fontFamily: "Roboto",
-                    }}
-                  >
-                    {quantity}
-                  </span>
+              <div className='qty-icon'>
+                <div className='quantity-icon'>
+                  <span>{quantity}</span>
                 </div>
               </div>
             </div>

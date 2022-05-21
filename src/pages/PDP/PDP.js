@@ -123,22 +123,11 @@ class PDP extends Component {
 
           <div className='product-description'>
             <div>
-              <h1
-                style={{
-                  width: "70%",
-                  fontWeight: "600",
-                }}
-              >
+              <h1 className='name'>
                 {name}
                 <span></span>
               </h1>
-              <h1
-                style={{
-                  width: "70%",
-                  fontWeight: "400",
-                  marginTop: "-15px",
-                }}
-              >
+              <h1 className='bottom-name'>
                 {bottomname}
                 <span></span>
               </h1>
@@ -149,21 +138,11 @@ class PDP extends Component {
               {product?.attributes?.map((prev) => {
                 return (
                   <ul key={prev.id}>
-                    <h4
-                      style={{
-                        fontFamily: "Roboto",
-                        textTransform: "uppercase",
-                      }}
-                    >
+                    <h4 className='attribute-name'>
                       {prev.name}{" "}
                       {prev.name ? <span>:</span> : null}
                     </h4>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                      }}
-                    >
+                    <div className='attributes'>
                       {prev.items.map((item) => {
                         const modifyAttributes = [
                           ...cartAttributes,
@@ -235,11 +214,7 @@ class PDP extends Component {
                             {prev.name === "Color" ? (
                               <div></div>
                             ) : (
-                              <span
-                                style={{
-                                  fontFamily: "Roboto",
-                                }}
-                              >
+                              <span className='roboto'>
                                 {RenderAttr(item)}
                               </span>
                             )}
@@ -253,22 +228,12 @@ class PDP extends Component {
             </div>
             {/* attr render END*/}
 
-            <div
-              style={{
-                marginTop: "20px",
-                marginBottom: "10px",
-                fontFamily: "Roboto",
-              }}
-            >
+            <div className='price'>
               <strong>PRICE:</strong>
             </div>
-            <div style={{ marginBottom: "20px" }}>
+            <div className='symbol-amount'>
               <span>
-                <h2
-                  style={{
-                    display: "inline",
-                  }}
-                >
+                <h2>
                   {product.prices
                     ? product.prices[currencyIndex].currency
                         .symbol
@@ -276,11 +241,7 @@ class PDP extends Component {
                 </h2>
               </span>
               <span>
-                <h2
-                  style={{
-                    display: "inline",
-                  }}
-                >
+                <h2>
                   {product.prices
                     ? product.prices[currencyIndex].amount
                     : null}
@@ -288,7 +249,7 @@ class PDP extends Component {
               </span>
             </div>
 
-            <div style={{ marginBottom: "40px" }}>
+            <div className='add-button'>
               <button
                 onClick={() =>
                   checkSameItem(obj)
@@ -311,20 +272,13 @@ class PDP extends Component {
               </button>
             </div>
 
-            <p
-              style={{
-                fontFamily: "Roboto",
-                fontWeight: "400",
-              }}
-            >
+            <p className='description'>
               {showFullDescription
                 ? String(description)
                 : String(description).slice(0, 150)}
               {String(description).length > 150 ? (
                 <span
-                  style={{
-                    cursor: "pointer",
-                  }}
+                  className='more-less'
                   onClick={() =>
                     this.setState({
                       showFullDescription:

@@ -17,7 +17,6 @@ class CartSingleItem extends Component {
     } = this.props;
     const { imageIndex } = this.state;
 
-    console.log(item.attributes);
     return (
       <div className='container'>
         <div>
@@ -40,12 +39,7 @@ class CartSingleItem extends Component {
                     {prev.name}{" "}
                     {prev.name ? <span>:</span> : null}
                   </h4>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                    }}
-                  >
+                  <div className='attribute-container'>
                     {prev.items.map((att) => {
                       const checked =
                         item.cartAttributes.find(
@@ -126,10 +120,11 @@ class CartSingleItem extends Component {
           ></img>
 
           <div
-            style={{
-              display:
-                item.gallery.length > 1 ? "block" : "none",
-            }}
+            className={
+              item.gallery.length > 1
+                ? "vectorLeft"
+                : "display-none"
+            }
             onClick={() =>
               imageIndex > 0
                 ? this.setState({
@@ -137,20 +132,16 @@ class CartSingleItem extends Component {
                   })
                 : null
             }
-            className='vectorLeft'
           >
-            <img
-              style={{ padding: "10px", display: "block" }}
-              src={VectorLeft}
-              alt=''
-            />
+            <img src={VectorLeft} alt='' />
           </div>
 
           <div
-            style={{
-              display:
-                item.gallery.length > 1 ? "block" : "none",
-            }}
+            className={
+              item.gallery.length > 1
+                ? "vectorRight"
+                : "display-none"
+            }
             onClick={() =>
               imageIndex < item.gallery.length - 1
                 ? this.setState({
@@ -158,13 +149,8 @@ class CartSingleItem extends Component {
                   })
                 : null
             }
-            className='vectorRight'
           >
-            <img
-              style={{ padding: "10px", display: "block" }}
-              src={VectorRight}
-              alt=''
-            />
+            <img src={VectorRight} alt='' />
           </div>
         </div>
       </div>

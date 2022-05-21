@@ -49,10 +49,8 @@ class CartLayout extends Component {
             )}
           </div>
           <div className='total'>
-            <span style={{ fontFamily: "Roboto" }}>
-              Total
-            </span>
-            <span style={{ fontFamily: "Roboto" }}>
+            <span>Total</span>
+            <span>
               {symbol} {Math.floor(total)}
             </span>
           </div>

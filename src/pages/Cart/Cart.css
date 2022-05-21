@@ -1,123 +1,152 @@
-.qty{
-    padding: 0px 100px 0px 100px;
-    margin-bottom: 258px;
+.qty {
+  padding: 0px 100px 0px 100px;
+  margin-bottom: 258px;
 }
 
-.container{
-    display:flex;
-    position:relative;
-    align-items:center;
-    justify-content:space-between;
-    border-bottom:2px solid #E5E5E5;
-    border-top:2px solid #E5E5E5;
+.cart-list {
+  padding: 0px 100px 0px 100px;
+}
+
+.container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #e5e5e5;
+  border-top: 2px solid #e5e5e5;
 }
 
 .container ul {
-    display: grid;
-    list-style: none;
-    margin: 0;
-    max-width: 50px;
-    padding: 0;
-    flex-wrap: wrap;
-  }
-  .container ul li {
-    text-align: center;
-    margin: 5px;
-    padding: 10px 10px 10px 10px;
-    border: 1px solid black;
-    transition: 0.8s;
-  }
-
-.name{
-    font-family: Raleway;
-    font-size: 30px;
-    font-weight: 600;
-    margin-top: 24px;
-    margin-bottom: 16px;
+  display: grid;
+  list-style: none;
+  margin: 0;
+  max-width: 50px;
+  padding: 0;
+  flex-wrap: wrap;
+}
+.container ul li {
+  text-align: center;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+  border: 1px solid black;
+  transition: 0.8s;
 }
 
-.bottomName{
-    font-family: Raleway;
-    font-size: 30px;
-    font-weight: 400;
-    margin-bottom: 20px;
+.name {
+  font-family: Raleway;
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: 24px;
+  margin-bottom: 16px;
 }
 
-.symbol{
-    font-family: Raleway;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    display: inline;
+.bottomName {
+  font-family: Raleway;
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 20px;
 }
 
-.price{
-    font-family: Raleway;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    display: inline;
+.symbol {
+  font-family: Raleway;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: inline;
 }
 
-.ul{
-    list-style: none;
-    padding-left: 0px;
+.price {
+  font-family: Raleway;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: inline;
 }
 
-.attributeName{
-    font-family: Raleway;
-    font-size: 18px;
-    font-weight: 700 bold;
-    margin-bottom: 25px;
+.ul {
+  list-style: none;
+  padding-left: 0px;
 }
 
-.countIncreaseButton{
-    position: absolute;
-    top: 24px;
-    right: 20%;
-    border: 1px solid #1D1F22;
-    cursor: pointer;
+.attributeName {
+  font-family: Raleway;
+  font-size: 18px;
+  font-weight: 700 bold;
+  margin-bottom: 25px;
 }
 
-.countIncreaseButton h2{
-    margin: 0;
-    padding: 15px 15px 15px 15px;
-    align-items: center;
+.countIncreaseButton {
+  position: absolute;
+  top: 24px;
+  right: 20%;
+  border: 1px solid #1d1f22;
+  cursor: pointer;
 }
 
-.countDecreaseButton{
-    position: absolute;
-    bottom: 24px;
-    right: 20%;
-    border: 1px solid #1D1F22;
-    cursor: pointer;
+.countIncreaseButton h2 {
+  margin: 0;
+  padding: 15px 15px 15px 15px;
+  align-items: center;
 }
 
-.countDecreaseButton h2{
-    margin: 0;
-    padding: 15px 17px 15px 17px;
-    align-items: center;
+.countDecreaseButton {
+  position: absolute;
+  bottom: 24px;
+  right: 20%;
+  border: 1px solid #1d1f22;
+  cursor: pointer;
 }
 
-.count{
-    position: absolute;
-    top: 46%;
-    right:21%;
-    transform: translate(+0%, -50%);
-    font-size: 24px;
-    font-family: Raleway;
+.countDecreaseButton h2 {
+  margin: 0;
+  padding: 15px 17px 15px 17px;
+  align-items: center;
 }
 
-.vectorLeft{
-    position: absolute;
-    top: 80%;
-    right: 6%;
-    background-color: rgba(0, 0, 0, 0.73);
+.count {
+  position: absolute;
+  top: 46%;
+  right: 21%;
+  transform: translate(+0%, -50%);
+  font-size: 24px;
+  font-family: Raleway;
 }
 
-.vectorRight{
-    position: absolute;
-    top: 80%;
-    right: 2%;
-    background-color: rgba(0, 0, 0, 0.73);
+.vectorLeft {
+  position: absolute;
+  top: 80%;
+  right: 6%;
+  background-color: rgba(0, 0, 0, 0.73);
+  display: block;
+}
+
+.vectorLeft img{
+    display: block;
+    padding: 10px;
+}
+
+.vectorRight {
+  position: absolute;
+  top: 80%;
+  right: 2%;
+  background-color: rgba(0, 0, 0, 0.73);
+  display: block;
+}
+
+.vectorRight img{
+    display: block;
+    padding: 10px;
+}
+
+.attribute-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.display-none{
+    display:none
+}
+
+.display-block{
+    display: block;
 }
