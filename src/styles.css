@@ -323,6 +323,7 @@ body {
 .attributes {
   display: flex;
   flex-direction: row;
+  margin-bottom:20px;
 }
 
 .roboto {
@@ -330,17 +331,21 @@ body {
 }
 
 .price {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 10px;
   font-family: Roboto;
+  font-size: 18px;
 }
 
 .symbol-amount {
   margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .symbol-amount span h2 {
   display: inline;
+  font-family: Roboto;
+  font-size: 18px;
 }
 
 .add-button {
