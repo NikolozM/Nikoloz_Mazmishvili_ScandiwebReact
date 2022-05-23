@@ -30,8 +30,9 @@ class Navbar extends Component {
       .then((res) => {
         this.setState({
           categories: res?.data?.categories,
-          currencies: res?.data?.currencies?.map((prev) => (
+          currencies: res?.data?.currencies?.map((prev,index) => (
             <Currencies
+              key={index}
               symbol={prev.symbol}
               label={prev.label}
               changeCurrency={this.props.changeCurrency}
