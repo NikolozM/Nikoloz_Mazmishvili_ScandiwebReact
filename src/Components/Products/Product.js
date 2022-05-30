@@ -115,31 +115,24 @@ class Product extends Component {
             ></img>
           </div>
 
-          <h3
-            className={
-              product.inStock
-                ? "fontSize"
-                : "outStock--card--id--price"
-            }
-          >
-            {product.brand}
-          </h3>
-
-          <h3
-            className={
-              product.inStock
-                ? "fontSize"
-                : "outStock--card--id--price"
-            }
-          >
-            {product.name}
-          </h3>
-
           <span
             className={
               product.inStock
                 ? "fontSize"
                 : "outStock--card--id--price"
+            }
+          >
+            {product.brand} {product.name}
+          </span>
+
+          <br />
+          <br />
+
+          <span
+            className={
+              product.inStock
+                ? "font--size"
+                : "outStock-card-price"
             }
           >
             {product.prices[currencyIndex].currency.symbol}{" "}

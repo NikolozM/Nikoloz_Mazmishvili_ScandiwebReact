@@ -30,15 +30,17 @@ class Navbar extends Component {
       .then((res) => {
         this.setState({
           categories: res?.data?.categories,
-          currencies: res?.data?.currencies?.map((prev,index) => (
-            <Currencies
-              key={index}
-              symbol={prev.symbol}
-              label={prev.label}
-              changeCurrency={this.props.changeCurrency}
-              changeArrow={this.changeArrow}
-            />
-          )),
+          currencies: res?.data?.currencies?.map(
+            (prev, index) => (
+              <Currencies
+                key={index}
+                symbol={prev.symbol}
+                label={prev.label}
+                changeCurrency={this.props.changeCurrency}
+                changeArrow={this.changeArrow}
+              />
+            )
+          ),
         });
       });
   };
@@ -107,6 +109,12 @@ class Navbar extends Component {
     }
   };
 
+  selectedCategory = [];
+
+  selectCategory = (name) => {
+    this.selectedCategory.splice(0, 1, name);
+  };
+
   render() {
     const {
       chooseCategory,
@@ -120,6 +128,7 @@ class Navbar extends Component {
       getHeight,
       showCart,
       openOrCloseCartLayout,
+      closeCartLayout,
     } = this.props;
     const { categories, arrow, currencies } = this.state;
     const {
@@ -128,7 +137,10 @@ class Navbar extends Component {
       myRef,
       currencyRef,
       cartLayoutRef,
+      selectCategory,
+      selectedCategory,
     } = this;
+
     return (
       <div className='relative'>
         <div className='flex spaceBetween navBarHeight'>
@@ -136,6 +148,8 @@ class Navbar extends Component {
             <Categories
               categories={categories}
               chooseCategory={chooseCategory}
+              selectedCategory={selectedCategory}
+              selectCategory={selectCategory}
             />
           </div>
 
@@ -200,6 +214,7 @@ class Navbar extends Component {
                   increaseQuantity={increaseQuantity}
                   decreaseQuantity={decreaseQuantity}
                   deleteItem={deleteItem}
+                  closeCartLayout={closeCartLayout}
                 />
               </div>
               <div className='qty-icon'>

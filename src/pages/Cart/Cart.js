@@ -21,7 +21,7 @@ class Cart extends Component {
             <h1 className='renderCartName'>CART</h1>
           </div>
 
-          <div className="cart-list">
+          <div className='cart-list'>
             {cartItem.map(
               (item) => (
                 // eslint-disable-next-line no-sequences
@@ -46,9 +46,14 @@ class Cart extends Component {
           </div>
 
           <div className='qty'>
-            <h3>Qty:{quantity}</h3>
             <h3>
-              Total: {symbol} {Math.floor(total)}{" "}
+              Qty: <span>{quantity}</span>
+            </h3>
+            <h3>
+              Total:{" "}
+              <span>
+                {symbol} {Math.floor(total)}{" "}
+              </span>
             </h3>
           </div>
         </div>

@@ -3,7 +3,12 @@ import Category from "./Category";
 
 class Categories extends Component {
   render() {
-    const { categories, chooseCategory } = this.props;
+    const {
+      categories,
+      chooseCategory,
+      selectedCategory,
+      selectCategory,
+    } = this.props;
     return (
       <div className='flex'>
         {categories.map((category) => {
@@ -13,6 +18,8 @@ class Categories extends Component {
               category={category}
               chooseCategory={chooseCategory}
               name={category.name}
+              selectedCategory={selectedCategory}
+              selectCategory={selectCategory}
             />
           );
         })}

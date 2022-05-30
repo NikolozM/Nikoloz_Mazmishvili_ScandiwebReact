@@ -11,6 +11,15 @@ body {
   align-items: center;
   font-size: 18px;
   color: #1d1f22;
+  font-weight: 300;
+}
+
+.font--size {
+  font-family: Raleway, sans-serif;
+  align-items: center;
+  font-size: 18px;
+  color: #1d1f22;
+  font-weight: 500;
 }
 
 .text-decoration {
@@ -96,6 +105,14 @@ body {
   color: #8d8f9a;
   font-weight: 300;
 }
+.outStock-card-price {
+  font-family: Raleway, sans-serif;
+  align-items: center;
+  font-size: 18px;
+  color: #8d8f9a;
+  font-weight: 500;
+}
+
 .logo {
   margin: auto;
 }
@@ -115,7 +132,13 @@ body {
 .navbar p:hover {
   color: #5ece7b;
   border-bottom: 1px solid #5ece7b;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.navbar-hover {
+  color: #5ece7b;
+  border-bottom: 1px solid #5ece7b;
+  padding-bottom: 5px;
 }
 
 .renderCategoryName {
@@ -137,12 +160,12 @@ body {
   margin-bottom: 55px;
   color: #1d1f22;
   font-family: Raleway, sans-serif;
-  font-weight: 700, bold;
+  font-weight: 700;
 }
 
 .currencies-on {
   font-family: Raleway;
-  font-weight: 700;
+  font-weight: 500;
   flex-direction: column;
   position: absolute;
   min-width: 50px;
@@ -307,6 +330,9 @@ body {
 .name {
   width: 70%;
   font-weight: 600;
+  font-family: Raleway;
+  font-size: 30px;
+  line-height: 27px;
 }
 
 .bottom-name {
@@ -323,7 +349,7 @@ body {
 .attributes {
   display: flex;
   flex-direction: row;
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
 .roboto {
@@ -472,6 +498,6 @@ body {
   justify-content: space-between;
 }
 
-.button-container *{
-  text-decoration:none;
+.button-container * {
+  text-decoration: none;
 }

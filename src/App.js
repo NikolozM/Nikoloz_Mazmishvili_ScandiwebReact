@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import { gql } from "@apollo/client";
 import PLP from "./pages/PLP/PLP";
 import PDP from "./pages/PDP/PDP";
 import Cart from "./pages/Cart/Cart";
 import Navbar from "./pages/Navbar";
 import { Routes, Route } from "react-router-dom";
-import { client } from "./index";
 import _ from "lodash";
-import { getProduct } from "./GraphQL/Queries";
 
 import {
   faYenSign,
@@ -20,7 +17,6 @@ import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
 class App extends Component {
   state = {
     category: "all",
-    products: [],
     renderCategoryName: "ALL",
     currencyIndex: 0,
     currencySign: faDollarSign,
@@ -29,21 +25,6 @@ class App extends Component {
     // document height for apply background when cart layout is open
     height: document.documentElement.scrollHeight,
     showCart: false,
-  };
-
-  // fetch products from api depending on category
-  getProducts = () => {
-    client
-      .query({
-        query: gql`
-          ${getProduct(this.state.category)}
-        `,
-      })
-      .then((res) => {
-        this.setState({
-          products: res?.data?.category?.products,
-        });
-      });
   };
 
   // onClick chooses category and renders items by category. This func goes by props to category
@@ -198,20 +179,14 @@ class App extends Component {
     });
   };
 
-  componentDidMount() {
-    this.getProducts();
-  }
-
   componentDidUpdate(prevProps, prevState) {
     if (prevState.category !== this.state.category) {
-      this.getProducts();
       this.getHeight();
     }
   }
 
   render() {
     const {
-      products,
       renderCategoryName,
       currencyIndex,
       currencySign,
@@ -219,6 +194,7 @@ class App extends Component {
       cartItem,
       height,
       showCart,
+      category,
     } = this.state;
     const {
       chooseCategory,
@@ -262,13 +238,13 @@ class App extends Component {
             path='/'
             element={
               <PLP
-                products={products}
                 currencyIndex={currencyIndex}
                 renderCategoryName={renderCategoryName}
                 addItemCart={addItemCart}
                 cartItem={cartItem}
                 checkSameItem={checkSameItem}
                 chooseSameItem={chooseSameItem}
+                category={category}
               />
             }
           />

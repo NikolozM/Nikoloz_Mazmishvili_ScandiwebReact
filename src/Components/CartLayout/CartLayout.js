@@ -12,6 +12,7 @@ class CartLayout extends Component {
       increaseQuantity,
       decreaseQuantity,
       deleteItem,
+      closeCartLayout,
     } = this.props;
     let total = 0;
     let symbol;
@@ -57,14 +58,19 @@ class CartLayout extends Component {
 
           {/* vievBag viewBagButton*/}
 
-          <div className='button-container'>
+          <div
+            onClick={() => closeCartLayout()}
+            className='button-container'
+          >
             <Link to={"/Cart"}>
               {" "}
               <button className='bag-button'>
                 VIEW BAG
               </button>
             </Link>
-            <button className="checkout-button">CHECK OUT</button>
+            <button className='checkout-button'>
+              CHECK OUT
+            </button>
           </div>
         </div>
       );

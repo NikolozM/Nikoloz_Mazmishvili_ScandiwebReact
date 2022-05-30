@@ -3,6 +3,16 @@
   margin-bottom: 258px;
 }
 
+.qty h3 {
+  font-family: Raleway;
+  font-weight: 500;
+}
+
+.qty span {
+  font-family: Raleway;
+  font-weight: 700;
+}
+
 .cart-list {
   padding: 0px 100px 0px 100px;
 }
@@ -50,9 +60,10 @@
 .symbol {
   font-family: Raleway;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 20px;
   display: inline;
+  line-height: 32px;
 }
 
 .price {
@@ -61,6 +72,7 @@
   font-weight: 700;
   margin-bottom: 20px;
   display: inline;
+  line-height: 32px;
 }
 
 .ul {
@@ -110,6 +122,7 @@
   transform: translate(+0%, -50%);
   font-size: 24px;
   font-family: Raleway;
+  font-weight: 500;
 }
 
 .vectorLeft {
@@ -120,9 +133,9 @@
   display: block;
 }
 
-.vectorLeft img{
-    display: block;
-    padding: 10px;
+.vectorLeft img {
+  display: block;
+  padding: 10px;
 }
 
 .vectorRight {
@@ -133,9 +146,9 @@
   display: block;
 }
 
-.vectorRight img{
-    display: block;
-    padding: 10px;
+.vectorRight img {
+  display: block;
+  padding: 10px;
 }
 
 .attribute-container {
@@ -143,10 +156,10 @@
   flex-direction: row;
 }
 
-.display-none{
-    display:none
+.display-none {
+  display: none;
 }
 
-.display-block{
-    display: block;
+.display-block {
+  display: block;
 }
